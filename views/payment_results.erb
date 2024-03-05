@@ -24,7 +24,7 @@
     Principal
   </dt>
   <dd>
-    <%= @present_value %>
+    $<%= @present_value %>
   </dd>
 
   <dt>
@@ -32,6 +32,6 @@
   </dt>
 
   <dd>
-    <%= @the_result %>
+    $<%= @the_result.round(2) %>
   </dd>
 </dl>

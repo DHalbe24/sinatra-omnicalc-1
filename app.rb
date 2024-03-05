@@ -36,13 +36,25 @@ get ("/payment/results") do
   @yrs_remain = params.fetch("yrs_remain").to_f
   @present_value = params.fetch("present_value").to_f
 
-  @r = @apr / 12.0
+  @r = (@apr / 100.0) / 12.0
   @n = @yrs_remain * 12.0
 
   @numerator =  (@r * @present_value)
   @denom = (1.0 - ((1.0 + @r)**-@n))
 
-  @the_result = @numerator / @denom
+  @the_result = @numerator / @denom 
 
   erb(:payment_results)
+end
+
+get '/random/new' do
+  erb(:new_random)
+end
+
+get("/random/results") do
+  @min = params.fetch("min").to_f
+  @max = params.fetch("max").to_f
+
+  @random = rand(@min..@max)
+  erb(:random_results)
 end
